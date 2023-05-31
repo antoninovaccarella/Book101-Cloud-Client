@@ -1,0 +1,102 @@
+<style>
+  .form-container {
+    margin-top: 100px;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .success-message {
+    color: green;
+    margin-top: 10px;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+</style>
+
+<h2>Inserisci i dettagli del libro da inserire su BOOK 101</h2>
+
+<div class="form-container">
+  <form (ngSubmit)="submitForm()" #productForm="ngForm">
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" [(ngModel)]="product.name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="stock">Stock</label>
+      <input type="number" id="stock" name="stock" [(ngModel)]="product.stock" required>
+    </div>
+
+    <div class="form-group">
+      <label for="categoria">Categoria</label>
+      <input type="text" id="categoria" name="categoria" [(ngModel)]="product.category" required>
+    </div>
+
+    <div class="form-group">
+      <label for="dettagli">Dettagli</label>
+      <input type="text" id="dettagli" name="dettagli" [(ngModel)]="product.shortDetails" required>
+    </div>
+
+    <div class="form-group">
+      <label for="descrizione">Descrizione</label>
+      <textarea id="descrizione" name="descrizione" [(ngModel)]="product.description" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="anteprima">Immagine</label>
+      <input type="text" id="anteprima" name="anteprima" [(ngModel)]="product.picture">
+    </div>
+
+    <div class="form-group">
+      <label for="prezzo">Prezzo</label>
+      <input type="number" id="prezzo" name="prezzo" [(ngModel)]="product.price" required>
+    </div>
+
+    <button type="submit" [disabled]="!productForm.valid">Add Product</button>
+
+    <!-- Display success message -->
+    <div class="success-message" *ngIf="submissionStatus === 'success'">
+      Product added successfully.
+    </div>
+
+    <!-- Display error message -->
+    <div class="error-message" *ngIf="submissionStatus === 'error'">
+      Error adding product. Please try again.
+    </div>
+  </form>
+</div>
