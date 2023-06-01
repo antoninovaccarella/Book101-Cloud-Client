@@ -1,3 +1,4 @@
+/*
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../../models/product';
@@ -46,3 +47,5 @@ export class NewProductComponent {
     this.product = new Product(); // Clear the form fields
   }
 }
+
+ */

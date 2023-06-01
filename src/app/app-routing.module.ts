@@ -10,7 +10,7 @@ import {ProductDetailsComponent} from './components/pages/product-details/produc
 import {LoginRegisterComponent} from './components/pages/login-register/login-register.component';
 import {StepperComponent} from './components/pages/stepper/stepper.component';
 import { MyOrdersComponent } from './components/pages/my-orders/my-orders.component';
-import { NewProductComponent } from './components/pages/new-product/new-product.component';
+//import { NewProductComponent } from './components/pages/new-product/new-product.component';
 
 const appRoutes: Routes = [
   {
@@ -70,11 +70,11 @@ const appRoutes: Routes = [
     component: HomeComponent,
     runGuardsAndResolvers: 'always'
   },
-
+/*
   { path: 'new-product',
     component: NewProductComponent ,
     runGuardsAndResolvers: 'always'
-  },
+  },*/
   //  { path: 'products/:category', component: ProductLeftSidebarComponent },
   {
     path: '**',
