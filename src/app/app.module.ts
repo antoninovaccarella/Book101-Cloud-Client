@@ -12,13 +12,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {authInterceptorProviders} from './components/shared/helpers/auth.interceptor';
-//import { NewProductComponent } from './components/pages/new-product/new-product.component';
 import { FormsModule } from '@angular/forms';
+import { NewProductComponent } from './components/pages/new-product/new-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    //NewProductComponent
+    NewProductComponent,
   ],
   imports: [
     BrowserModule,

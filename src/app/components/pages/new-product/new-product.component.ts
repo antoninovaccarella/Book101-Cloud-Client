@@ -1,70 +1,50 @@
-/*
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Product } from '../../../models/product';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {NewProductService} from '../../shared/services/new-product.service';
 
 @Component({
-    selector: 'app-new-product',
-    templateUrl: './new-product.component.html',
-    styleUrls: ['./new-product.component.css']
+  selector: 'app-new-product',
+  templateUrl: './new-product.component.html',
+  styleUrls: ['./new-product.component.css']
 })
-export class NewProductComponent {
-    product: Product = new Product(); // Object to store the product data
-    submissionStatus: string | null = null; // Variable to track the submission status
+export class NewProductComponent implements OnInit {
+  selectedFiles: FileList;
+  currentFile: File;
+  progress = 0;
+  message = '';
 
-    // Form Controls for validation
-    nameControl = new FormControl('', Validators.required);
-    stockControl = new FormControl('', Validators.required);
-    categoryControl = new FormControl('', Validators.required);
-    shortDetailsControl = new FormControl('', Validators.required);
-    descriptionControl = new FormControl('', Validators.required);
-    priceControl = new FormControl('', Validators.required);
+  fileInfos: Observable<any>;
 
-    // Image preview property
-    imagePreview: string | ArrayBuffer | null = null;
+  constructor(private uploadService: NewProductService) { }
 
-    constructor(private http: HttpClient) {}
-  submitForm() {
-    this.submissionStatus = null; // Reset the submission status
+  ngOnInit(): void {
+    this.fileInfos = this.uploadService.getFiles();
+  }
 
-    const newProduct: Product = {
-      name: this.product.name,
-      stock: this.product.stock,
-      category: this.product.category,
-      shortDetails: this.product.shortDetails,
-      description: this.product.description,
-      picture: this.product.picture,
-      price: this.product.price
-    };
+  selectFile(event): void {
+    this.selectedFiles = event.target.files;
+  }
 
-    this.http.post<Product>('http://localhost:8080/api/product/add', newProduct)
-      .subscribe(
-        (response) => {
-          console.log('Product added successfully:', response);
-          this.submissionStatus = 'success'; // Set the submission status to success
-          this.resetForm(); // Clear the form upon successful submission
+  upload(): void {
+    this.progress = 0;
+
+    this.currentFile = this.selectedFiles.item(0);
+    this.uploadService.upload(this.currentFile).subscribe(
+        event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progress = Math.round(100 * event.loaded / event.total);
+          } else if (event instanceof HttpResponse) {
+            this.message = event.body.message;
+            this.fileInfos = this.uploadService.getFiles();
+          }
         },
-        (error) => {
-          console.error('Error adding product:', error);
-          this.submissionStatus = 'error'; // Set the submission status to error
-        }
-      );
-  }
+        err => {
+          this.progress = 0;
+          this.message = 'Could not upload the file!';
+          this.currentFile = undefined;
+        });
 
-}
-onImagePicked(event: Event): void {
-    const file = (event.target as HTMLInputElement).files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-        this.imagePreview = reader.result;
-    };
-    reader.readAsDataURL(file);
-}
-  resetForm() {
-    this.product = new Product(); // Clear the form fields
+    this.selectedFiles = undefined;
   }
 }
-
-
-*/
