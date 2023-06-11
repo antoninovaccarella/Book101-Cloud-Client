@@ -72,7 +72,7 @@ const appRoutes: Routes = [
   },
 
   { path: 'new-product',
-    component: NewProductComponent ,
+    component: NewProductComponent,
     runGuardsAndResolvers: 'always'
   },
   //  { path: 'products/:category', component: ProductLeftSidebarComponent },
