@@ -17,6 +17,9 @@ export class NewProductComponent implements OnInit {
   currentFile: File;
   progress = 0;
   message = '';
+  fileImg = '';
+  filePdf = '';
+
 
   fileInfos: Observable<any>;
 
@@ -39,12 +42,14 @@ export class NewProductComponent implements OnInit {
       description: [''],
       stock: [''],
       state: [''],
-      category: ['']
+      category: [''],
+      pdf: ['']
     });
     this.fileInfos = this.uploadService.getFiles();
   }
 
   onSubmit() {
+    debugger;
     if (this.productForm.valid) {
       this.productService.addProduct(this.productForm.value).subscribe(
           data => {
@@ -57,8 +62,24 @@ export class NewProductComponent implements OnInit {
     }
   } // This was missing
 
-  selectFile(event): void {
-    this.selectedFiles = event.target.files;
+  selectFileImg(event): void {
+    const file = event.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.fileImg = reader.result + '';
+      this.productForm.value.picture = this.fileImg;
+    };
+  }
+
+  selectFilePdf(event): void {
+    const file = event.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.filePdf = reader.result + '';
+      this.productForm.value.pdf = this.filePdf;
+    };
   }
 
   upload(): void {

@@ -11,6 +11,7 @@ export class Product {
   stock?: number;
   state?: string;
   category?: string;
+  pdf?: string;
 
   constructor(
     id?: number,
