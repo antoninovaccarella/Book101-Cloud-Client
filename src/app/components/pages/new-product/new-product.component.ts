@@ -49,7 +49,6 @@ export class NewProductComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     if (this.productForm.valid) {
       this.productService.addProduct(this.productForm.value).subscribe(
           data => {
@@ -63,7 +62,7 @@ export class NewProductComponent implements OnInit {
   } // This was missing
 
   selectFileImg(event): void {
-    const file = event.files[0];
+    const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -73,7 +72,7 @@ export class NewProductComponent implements OnInit {
   }
 
   selectFilePdf(event): void {
-    const file = event.files[0];
+    const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
