@@ -31,7 +31,6 @@ export class NewProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      id: [''],
       name: [''],
       stock: [''],
       category: [''],

@@ -42,7 +42,6 @@ export class ProductsComponent implements OnInit {
           this.products = product;
         }
         );
-      
     }
     else{
       this.productService.getProductsPagedByCategory(this.category, this.pageNumber, this.pageSize, this.sortBy).subscribe(
@@ -51,7 +50,6 @@ export class ProductsComponent implements OnInit {
         }
         );
     }
-    
   }
 
   // Add to cart
