@@ -29,6 +29,15 @@
           <th mat-header-cell *matHeaderCellDef> Stato dell'ordine </th>
           <td mat-cell *matCellDef="let element"> {{element.orderStatus}} </td>
         </ng-container>
+        <ng-container matColumnDef="">
+          <td mat-cell *matCellDef="let element">
+            <div *ngFor="let cartItem of element.orderItems">
+            <button (click)="downloadPdf(cartItem.product)"
+            label="Download EBOOK">
+            </button>
+            </div>
+          </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
