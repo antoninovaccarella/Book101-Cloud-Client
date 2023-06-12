@@ -33,16 +33,15 @@ export class NewProductComponent implements OnInit {
     this.productForm = this.formBuilder.group({
       id: [''],
       name: [''],
-      price: [''],
-      salePrice: [''],
-      discount: [''],
-      picture: [''],
-      small: this.formBuilder.array([]),
-      shortDetails: [''],
-      description: [''],
       stock: [''],
-      state: [''],
       category: [''],
+      isbn: [''],
+      description: [''],
+      author: [''],
+      language: [''],
+      publisher: [''],
+      picture: [''],
+      price: [''],
       pdf: ['']
     });
     this.fileInfos = this.uploadService.getFiles();
