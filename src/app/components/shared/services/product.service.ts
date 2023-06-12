@@ -32,4 +32,8 @@ export class ProductService {
   public getProduct(id: number): Observable<Product> {
     return this.httpClient.get<Product>(PRODUCT_API + id, httpOptions);
   }
+
+  public addProduct(product: Product): Observable<Product> {
+    return this.httpClient.post<Product>(PRODUCT_API + 'add', product, httpOptions);
+  }
 }

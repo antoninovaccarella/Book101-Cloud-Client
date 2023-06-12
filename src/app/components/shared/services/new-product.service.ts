@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {PRODUCT_API} from '../../../config/api';
+import {Product} from '../../../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class NewProductService {
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File): Observable<HttpEvent<any>> {
+  upload(product: Product): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
     formData.append('file', file);
