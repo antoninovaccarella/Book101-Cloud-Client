@@ -5,13 +5,16 @@
 <div class="container mt-5" style="margin-top: 400px;">
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="mt-5">
 
+        <input type="hidden" id="id" formControlName="id"/>
+
+
         <div class="form-group">
             <label for="name">Titolo:</label>
             <input type="text" id="name" formControlName="name" class="form-control">
         </div>
 
         <div class="form-group">
-            <label for="stock">Stock:</label>
+            <label for="stock">Quantità:</label>
             <input type="number" id="stock" formControlName="stock" class="form-control">
         </div>
 
@@ -53,11 +56,13 @@
         <div class="form-group">
             <label class="btn btn-default" for="pictureFile">Immagine:</label>
             <input type="file" id="pictureFile" (change)="selectFileImg($event)" />
+            <input type="hidden" id="picture" formControlName="picture"/>
         </div>
 
         <div class="form-group">
             <label class="btn btn-default" for="pdfFile">PDF:</label>
             <input type="file" id="pdfFile" (change)="selectFilePdf($event)" />
+            <input type="hidden" id="pdf" formControlName="pdf"/>
         </div>
 
 
