@@ -1,12 +1,9 @@
 <body>
-
-
-<div class="container mt-5">
+<br>
+<br>
+<br>
+<div class="container mt-5" style="margin-top: 400px;">
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="mt-5">
-        <div class="form-group">
-            <label for="id">ID:</label>
-            <input type="number" id="id" formControlName="id" class="form-control">
-        </div>
 
         <div class="form-group">
             <label for="name">Name:</label>
@@ -60,6 +57,17 @@
             <input type="text" id="category" formControlName="category" class="form-control">
         </div>
 
+        <div class="form-group">
+            <label class="btn btn-default" for="pictureFile">Immagine:</label>
+            <input type="file" id="pictureFile" (change)="selectFile($event)" />
+        </div>
+
+        <div class="form-group">
+            <label class="btn btn-default" for="pdfFile">PDF:</label>
+            <input type="file" id="pdfFile" (change)="selectFile($event)" />
+        </div>
+
+
         <button type="submit" class="btn btn-primary">Add Product</button>
     </form>
 </div>
@@ -77,22 +85,21 @@
         </div>
     </div>
 
-    <label class="btn btn-default">
-        <input type="file" (change)="selectFile($event)" />
-    </label>
-
-    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
-        Upload
-    </button>
-
-    <div class="alert alert-light" role="alert">{{ message }}</div>
-
-    <div class="card">
-        <div class="card-header">List of Files</div>
-        <ul class="list-group list-group-flush">
-            <li *ngFor="let file of fileInfos | async" class="list-group-item">
-                <a href="{{ file.url }}">{{ file.name }}</a>
-            </li>
-        </ul>
-    </div>
+    <!--
+        <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
+            Upload
+        </button>
+    -->
+        <div class="alert alert-light" role="alert">{{ message }}</div>
+    <!--
+        <div class="card">
+            <div class="card-header">List of Files</div>
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let file of fileInfos | async" class="list-group-item">
+                    <a href="{{ file.url }}">{{ file.name }}</a>
+                </li>
+            </ul>
+        </div>
+        -->
 </div>
+</body>

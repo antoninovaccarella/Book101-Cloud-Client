@@ -12,11 +12,8 @@ export class NewProductService {
   constructor(private http: HttpClient) { }
 
   upload(product: Product): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
 
-    formData.append('file', file);
-
-    const req = new HttpRequest('POST', PRODUCT_API + '/add', formData, {
+    const req = new HttpRequest('POST', PRODUCT_API + '/add', product, {
       reportProgress: true,
       responseType: 'json'
     });
