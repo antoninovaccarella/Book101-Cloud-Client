@@ -5,6 +5,7 @@ import {NewProductService} from '../../shared/services/new-product.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { Product } from 'src/app/models/product';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-product',
@@ -25,7 +26,8 @@ export class NewProductComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder,
-              private uploadService: NewProductService) {
+              private uploadService: NewProductService,
+              private snackBar: MatSnackBar) {
 
   }
 
@@ -51,13 +53,15 @@ export class NewProductComponent implements OnInit {
       this.productService.addProduct(this.productForm.value).subscribe(
           data => {
             console.log('Success!', data);
+            this.snackBar.open('Prodotto caricato con successo.', 'X', { duration: 2000 });
           },
           error => {
             console.error('Error!', error);
+            this.snackBar.open('Impossibile caricare il prodotto.', 'X', { duration: 2000 });
           }
       );
     }
-  } // This was missing
+  }
 
   selectFileImg(event): void {
     const file = event.target.files[0];
