@@ -10,7 +10,7 @@ import {Product} from '../../../models/product';
 })
 export class MyOrdersComponent implements OnInit {
   orders: Order[];
-  displayedColumns: string[] = ['purchaseTime', 'orderStatus', 'orderItems','paymentMethod', 'totalAmount'];  
+  displayedColumns: string[] = ['purchaseTime', 'orderStatus', 'orderItems','paymentMethod', 'totalAmount', 'downloadPDF'];
   
   
   constructor(private cartService: CartService) { }
