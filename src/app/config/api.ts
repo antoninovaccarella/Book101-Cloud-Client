@@ -6,6 +6,8 @@ export const PRODUCT_API = BASE_API + 'product/';
 export const USER_API = BASE_API + 'user/';
 export const CART_API = BASE_API + 'cart/';
 
+export const REVIEW_API = BASE_API + 'review/';
+
 
 
 
