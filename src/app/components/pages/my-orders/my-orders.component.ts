@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/models/order';
 import { CartService } from '../../shared/services/cart.service';
 import {Product} from '../../../models/product';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-my-orders',
@@ -11,47 +12,59 @@ import {Product} from '../../../models/product';
 export class MyOrdersComponent implements OnInit {
   orders: Order[];
   displayedColumns: string[] = ['purchaseTime', 'orderStatus', 'orderItems','paymentMethod', 'totalAmount', 'downloadPDF'];
-  
-  
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.cartService.getOrders().subscribe(orders => this.orders = orders);
   }
 
-  convertBase64ToBlob(base64String: string): Blob {
-    const byteCharacters = atob(base64String);
-    const byteArrays = [];
 
-    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-      const slice = byteCharacters.slice(offset, offset + 512);
-      const byteNumbers = new Array(slice.length);
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
+  cleanBase64String(fullString: string): string {
+
+    const commaIndex = fullString.indexOf(',');
+
+    if (commaIndex !== -1) {
+
+      return fullString.substr(commaIndex + 1);
+
+    } else {
+
+      return fullString;
+
     }
 
-    return new Blob(byteArrays, { type: 'application/octet-stream' });
+  }
+
+  downloadPdf(product: Product) {
+
+    const byteCharacters = atob(this.cleanBase64String(product.pdf));
+
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+
+    const fileBlob = new Blob([byteArray], { type: 'application/octet-stream' });
+
+    saveAs(fileBlob, product.name + '.pdf');
+
   }
 
 
-  downloadBinaryFile(base64String: string, filename: string) {
-    const blob = this.convertBase64ToBlob(base64String);
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = filename;
-    link.click();
-  }
 
 
+/*
   downloadPdf(product: Product) {
     const base64String = product.pdf; // Sostituisci con il tuo effettivo file base64
     const filename = product.name + '.pdf'; // Sostituisci con il nome del file desiderato
     this.downloadBinaryFile(base64String, filename);
   }
-
+*/
 }
 
 

@@ -33,9 +33,11 @@
           <th mat-header-cell *matHeaderCellDef> Scarica PDF </th>
           <td mat-cell *matCellDef="let element">
             <div *ngFor="let orderItem of element.orderItems">
+              {{orderItem.product.name}}
             <button (click)="downloadPdf(orderItem.product)">
             Download EBOOK
             </button>
+              <br>
             </div>
             </td>
         </ng-container>
