@@ -16,13 +16,13 @@ export class ReviewService {
   constructor(private httpClient: HttpClient) {
   }
 
-  public getReviewsPagedByProduct(idProduct: string): Observable<Review[]> {
+  public getReviewsPagedByProduct(idProduct: number): Observable<Review[]> {
     return this.httpClient.get<Review[]>(
-        REVIEW_API + 'idProduct' + '?idProduct=' + idProduct + '/paged', httpOptions);
+        REVIEW_API + '?product=' + idProduct + '/paged', httpOptions);
   }
 
-  public addReview(review: Review, idProduct: string): Observable<Review> {
-    return this.httpClient.post<Review>(REVIEW_API + 'add', review + '?idProduct=' + 'idProduct' , httpOptions);
+  public addReview(review: Review, idProduct: number): Observable<Review> {
+    return this.httpClient.post<Review>(REVIEW_API + 'add', review + '?id=' + idProduct , httpOptions);
   }
 
 }

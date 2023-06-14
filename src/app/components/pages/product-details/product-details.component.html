@@ -54,7 +54,22 @@
         </div>
       </div>
     </div>
+    <form [formGroup]="recensioniForm" (ngSubmit)="sendRecensione()" class="mt-5">
+      <div class="form-group">
+        <label for="note">Recensione:</label>
+        <input type="text" id="note" formControlName="note" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Aggiungi Recensione</button>
+    </form>
+
+    <div *ngFor="let recensione of listaRecensioni">
+      {{recensione.note}}<br>
+    </div>
   </div>
+
+
+
+
 </section>
 <!-- end content-section -->
 <section class="content-section no-spacing" data-background="#94ffc4">
