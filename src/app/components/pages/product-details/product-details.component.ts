@@ -27,6 +27,7 @@ export class ProductDetailsComponent implements OnInit {
         const id = +params.id;
         this.productService.getProduct(id).subscribe(product => {
           this.product = product;
+          this.loadRecensioni();
         });
       }
     );
@@ -36,7 +37,6 @@ export class ProductDetailsComponent implements OnInit {
     this.recensioniForm = this.formBuilder.group({
       note: ['']
     });
-    this.loadRecensioni();
   }
 
   // Add to cart
