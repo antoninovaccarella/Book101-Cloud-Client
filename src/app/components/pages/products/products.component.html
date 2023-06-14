@@ -20,7 +20,7 @@
           <div *ngFor="let product of products" class="col-lg-4 col-md-6">
             <div data-scroll data-scroll-speed="0">
               <div class="exhibition-box">
-                <figure><img [alt]="product.name" [src]="product.picture">
+                <figure><img width="300px" height="450px" [alt]="product.name" [src]="product.picture">
                   <div class="info">
                     <figure class="i"><img alt="Image" src="../../../assets/images/icon-cart.png"></figure>
                     <span (click)="addToCart(product)" class="pointer">Aggiungi al carrello</span>
