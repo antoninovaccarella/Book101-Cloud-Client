@@ -22,7 +22,7 @@ export class ReviewService {
   }
 
   public addReview(review: Review, idProduct: number): Observable<Review> {
-    return this.httpClient.post<Review>(REVIEW_API + 'add/' + idProduct, '?note=' + review , httpOptions);
+    return this.httpClient.post<Review>(REVIEW_API + 'add/' + idProduct, review , httpOptions);
   }
 
 }
