@@ -59,14 +59,14 @@
     </div>
     <form [formGroup]="recensioniForm" (ngSubmit)="sendRecensione()" class="mt-5">
       <div class="form-group">
-        <label for="note">Scrivi la tua recensione:</label>
+        <label for="note"><h3>Scrivi la tua recensione:</h3></label>
         <input type="text" id="note" formControlName="note" class="form-control">
       </div> <br>
       <button type="submit" class="btn btn-primary">Pubblica</button>
     </form>
 <br> <br>
     <br>
-    <label for="note">Tutte le recensioni:</label>
+    <label for="note"> <h3>Tutte le recensioni:</h3> </label>
     <br> <hr> <br>
     <div *ngFor="let recensione of listaRecensioni">
       {{recensione.note}}<br> <hr> <br>
