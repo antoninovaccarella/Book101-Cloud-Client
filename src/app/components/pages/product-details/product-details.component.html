@@ -30,6 +30,9 @@
           <h2 class="wrapper-price">{{product.price}} €</h2>
           <p></p>
           <p>{{product.isbn}}</p>
+          <p>{{product.author}}</p>
+          <p>{{product.publisher}}</p>
+          <p>{{product.language}}</p>
           <p>{{product.description}}</p>
         </div>
         <div class="col-12 text-center">
@@ -56,12 +59,14 @@
     </div>
     <form [formGroup]="recensioniForm" (ngSubmit)="sendRecensione()" class="mt-5">
       <div class="form-group">
-        <label for="note">Recensione:</label>
+        <label for="note">Scrivi la tua recensione:</label>
         <input type="text" id="note" formControlName="note" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-primary">Aggiungi Recensione</button>
+      </div> <br>
+      <button type="submit" class="btn btn-primary">Pubblica</button>
     </form>
 <br> <br>
+    <br>
+    <label for="note">Tutte le recensioni:</label>
     <br> <hr> <br>
     <div *ngFor="let recensione of listaRecensioni">
       {{recensione.note}}<br> <hr> <br>

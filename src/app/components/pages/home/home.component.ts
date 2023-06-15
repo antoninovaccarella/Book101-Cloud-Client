@@ -24,23 +24,23 @@ export class HomeComponent implements OnInit {
       this.firstProds.push(product);
     });
 
-    this.productService.getProduct(11).subscribe(product => {
+    this.productService.getProduct(8).subscribe(product => {
       this.secondProds.push(product);
     });
     this.productService.getProduct(12).subscribe(product => {
       this.secondProds.push(product);
     });
-    this.productService.getProduct(13).subscribe(product => {
+    this.productService.getProduct(16).subscribe(product => {
       this.secondProds.push(product);
     });
 
-    this.productService.getProduct(15).subscribe(product => {
+    this.productService.getProduct(5).subscribe(product => {
       this.thirdProds.push(product);
     });
-    this.productService.getProduct(16).subscribe(product => {
+    this.productService.getProduct(7).subscribe(product => {
       this.thirdProds.push(product);
     });
-    this.productService.getProduct(17).subscribe(product => {
+    this.productService.getProduct(10).subscribe(product => {
       this.thirdProds.push(product);
     });
     this.productService.getProduct(18).subscribe(product => {
